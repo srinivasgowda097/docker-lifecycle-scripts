@@ -5,7 +5,7 @@ node {
    // Get some code from a GitHub repository
    git url: 'https://github.com/jfrogtraining/docker-lifecycle-scripts'
   def artServer = Artifactory.server('newartifact')
-  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '4xsnap-docker-ci',
+  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'artifactoryid',
   usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
     def uname=env.USERNAME
     def pw=env.PASSWORD
@@ -70,7 +70,7 @@ node {
 node {
   git url: 'https://github.com/jfrogtraining/docker-lifecycle-scripts'
   def artServer = Artifactory.server('newartifact')
-  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '4xsnap-docker-ci',
+  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'artifactoryid',
   usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
     def uname=env.USERNAME
     def pw=env.PASSWORD
