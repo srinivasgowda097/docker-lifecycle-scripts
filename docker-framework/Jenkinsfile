@@ -4,14 +4,14 @@ node {
 
    // Get some code from a GitHub repository
    git url: 'https://github.com/jfrogtraining/docker-lifecycle-scripts'
-  def artServer = Artifactory.server('4x-snapshot')
+  def artServer = Artifactory.server('newartifact')
   withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '4xsnap-docker-ci',
   usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
     def uname=env.USERNAME
     def pw=env.PASSWORD
     artServer.username=uname
     artServer.password=pw
-    def curlstr="curl -u"+uname+':'+pw+" 'https://us-demo-4x.jfrog.info/artifactory/"
+    def curlstr="curl -u"+uname+':'+pw+" 'http://devapi.cloudmunch.com:8082/artifactory/"
     def artDocker= Artifactory.docker(uname, pw)
     def buildInfo = Artifactory.newBuildInfo()
     dir('docker-framework') {
@@ -69,14 +69,14 @@ node {
 }
 node {
   git url: 'https://github.com/jfrogtraining/docker-lifecycle-scripts'
-  def artServer = Artifactory.server('4x-snapshot')
+  def artServer = Artifactory.server('newartifact')
   withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '4xsnap-docker-ci',
   usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
     def uname=env.USERNAME
     def pw=env.PASSWORD
     artServer.username=uname
     artServer.password=pw
-    def curlstr="curl -u"+uname+':'+pw+" 'https://us-demo-4x.jfrog.info/artifactory/"
+    def curlstr="curl -u"+uname+':'+pw+" 'http://devapi.cloudmunch.com:8082/artifactory/"
     def artDocker= Artifactory.docker(uname, pw)
     dir('docker-framework/framework-test')
     {
